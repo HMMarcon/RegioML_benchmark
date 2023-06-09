@@ -45,7 +45,7 @@ if __name__ == "__main__":
     pred_site = []
     for i in range(len(pred)):
         if pred[i]:
-        pred_site.append(atom_indices[i])
+            pred_site.append(atom_indices[i])
 
     print(pred_site)
     
