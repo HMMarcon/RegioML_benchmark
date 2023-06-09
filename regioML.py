@@ -38,11 +38,17 @@ if __name__ == "__main__":
     pred_proba = final_model.predict(descriptor_vector, num_iteration=final_model.best_iteration)
     pred = np.rint(pred_proba)
 
-    print('SMILES:', smiles)
-    print('Atom indices:', atom_indices)
-    print('Pred. probabilities:', pred_proba)
-    print('Predictions:', pred)
+    #print('SMILES:', smiles)
+    #print('Atom indices:', atom_indices)
+    #print('Pred. probabilities:', pred_proba)
+    #print('Predictions:', pred)
+    pred_site = []
+    for i in range(len(pred)):
+        if pred[i]:
+        pred_site.append(atom_indices[i])
 
+    print(pred_site)
+    
     # atom_reactive = [bool(x) for x in pred]
     # reactive_sites = np.array(atom_indices)[atom_reactive].tolist()
     # reactive_sites = find_identical_atoms(predictor.rdkit_mol, reactive_sites)
@@ -61,11 +67,11 @@ if __name__ == "__main__":
     else:
         reactivity_label = 'Medium reactivity'
 
-    print('Proton affinities:', list(map(int, PA_preds)))
+    #print('Proton affinities:', list(map(int, PA_preds)))
     
     # Draw molecule
-    result_svg = molsvg.generate_structure(smiles, [smiles], [reactivity_label], [pred_proba.tolist()], [atom_indices], args.observed)
-    f_draw = open(f'{args.name}.svg','w')
-    f_draw.write(result_svg)
-    f_draw.close()
-    print(f'Molecule drawing with predictions saved as: {args.name}.svg')
+    #result_svg = molsvg.generate_structure(smiles, [smiles], [reactivity_label], [pred_proba.tolist()], [atom_indices], args.observed)
+    #f_draw = open(f'{args.name}.svg','w')
+    #f_draw.write(result_svg)
+    #f_draw.close()
+    #print(f'Molecule drawing with predictions saved as: {args.name}.svg')
